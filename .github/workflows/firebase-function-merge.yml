@@ -7,7 +7,7 @@ name: Deploy to Firebase Function on merge
     branches:
       - main
     paths:
-      - functions/**
+      - 'functions/**'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+      - name: move folder
+        run: cd functions
       - name: delete dist
         run: rm -rf dist
       - name: delete node-modules
