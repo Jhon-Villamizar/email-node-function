@@ -21,16 +21,12 @@ jobs:
           cache-dependency-path: functions/package-lock.json
       - name: move folder
         run: cd functions
-      - name: delete dist
-        run: rm -rf dist
+      - name: delete lib
+        run: rm -rf lib
       - name: delete node-modules
         run: rm -rf node_modules
       - name: Install dependencies
         run: cd functions && npm install
-      # - run: npm run build
-      # - uses: FirebaseExtended/action-function-deploy@v0
-      #   with:
-      #     repoToken: '${{ secrets.GITHUB_TOKEN }}'
-      #     firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_D5950 }}'
-      #     channelId: live
-      #     projectId: portfolio-d5950
+      - run: npm run deploy
+      - uses: FirebaseExtended/action-function-deploy@v0
+        run: cd functions && npm run deploy
