@@ -7,7 +7,7 @@ type data = {
   message: string;
 };
 
-const emailService = (data: data) => {
+const emailService = (data: data, res: any) => {
   const { email, subject, message } = data;
 
   const transporter = nodemailer.createTransport({
@@ -30,10 +30,10 @@ const emailService = (data: data) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      return `we have a error: ${error}`;
+      res.send(`we have a error: ${error}`);
     } else {
       console.log('Email sent: ' + info.response);
-      return `email sent: ${info.response}`;
+      res.send(`email sent: ${info.response}`);
     }
   });
 };
