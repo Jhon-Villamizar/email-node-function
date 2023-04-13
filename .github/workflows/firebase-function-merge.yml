@@ -27,6 +27,5 @@ jobs:
         run: rm -rf node_modules
       - name: Install dependencies
         run: cd functions && npm install
-      - run: npm run deploy
-      - uses: FirebaseExtended/action-function-deploy@v0
+      - name: npm run deploy
         run: cd functions && npm run deploy
