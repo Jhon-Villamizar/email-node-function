@@ -1,0 +1,100 @@
+2 / 2
+
+¡Claro! Aquí te muestro cómo puedes crear un Cloud Function con Node.js, TypeScript y Express, y configurarlo con las herramientas que mencionaste para probar localmente:
+
+Crea un proyecto de Firebase en la consola de Firebase.
+Instala el SDK de Firebase CLI en tu computadora:
+Copy code
+npm install -g firebase-tools
+Crea un nuevo directorio para tu proyecto y dirígete a él:
+bash
+Copy code
+mkdir mi-proyecto
+cd mi-proyecto
+Inicializa un nuevo proyecto de Firebase en tu directorio:
+bash
+Copy code
+firebase init functions
+Elige las opciones predeterminadas para el proyecto de Firebase (o personalízalas según tus necesidades).
+Instala las dependencias necesarias para el proyecto:
+css
+Copy code
+npm install express cors body-parser nodemailer nodemon eslint prettier
+Crea un archivo tsconfig.json para configurar TypeScript en tu proyecto:
+json
+Copy code
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "lib": ["es2017"],
+    "sourceMap": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"]
+}
+Crea un archivo .eslintrc.json para configurar ESLint en tu proyecto:
+perl
+Copy code
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {}
+}
+Crea un archivo .prettierrc para configurar Prettier en tu proyecto:
+json
+Copy code
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "auto"
+}
+Crea un archivo .editorconfig para configurar EditorConfig en tu proyecto:
+makefile
+Copy code
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,ts,json,md}]
+charset = utf-8
+
+# Set default indent style and size
+[*.js]
+indent_style = space
+indent_size = 2
+
+[*.ts]
+indent_style = space
+indent_size = 2
