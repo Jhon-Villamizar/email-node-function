@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+          cache-dependency-path: functions/package-lock.json
       - name: move folder
         run: cd functions
       - name: delete dist
