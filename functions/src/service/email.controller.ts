@@ -2,13 +2,14 @@ import * as nodemailer from 'nodemailer';
 import { HOST, PASS, TO } from '../envConfig';
 
 type data = {
+  name: string;
   email: string;
   subject: string;
   message: string;
 };
 
 const emailService = (data: data, res: any) => {
-  const { email, subject, message } = data;
+  const { name, email, subject, message } = data;
 
   const transporter = nodemailer.createTransport({
     host: HOST,
@@ -24,16 +25,14 @@ const emailService = (data: data, res: any) => {
     from: 'jhonvio@hotmail.com',
     to: TO,
     subject: subject,
-    text: `${email} \n ${message}`,
+    text: `${name} \n ${email} \n ${message}`,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error) => {
     if (error) {
-      console.log(error);
-      res.send(`we have a error: ${error}`);
+      res.send(`We have a error: ${error}`);
     } else {
-      console.log('Email sent: ' + info.response);
-      res.send(`email sent: ${info.response}`);
+      res.text('Email sent');
     }
   });
 };
